@@ -1,0 +1,10 @@
+python src/pipelines/training_pipeline.py
+
+Step 2:
+
+Register model in MLflow UI
+
+Step 3:
+uvicorn src.serving.app:app --reload
+
+
