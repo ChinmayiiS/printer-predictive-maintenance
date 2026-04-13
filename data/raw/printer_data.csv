@@ -1,0 +1,21 @@
+# run once to generate dataset
+import pandas as pd
+import numpy as np
+
+np.random.seed(42)
+n = 50000
+
+data = pd.DataFrame({
+    "temperature": np.random.normal(70, 10, n),
+    "print_count": np.random.randint(100, 10000, n),
+    "error_count": np.random.randint(0, 20, n),
+    "toner_level": np.random.uniform(0, 100, n),
+})
+
+data["failure"] = (
+    (data["temperature"] > 85) |
+    (data["error_count"] > 10) |
+    (data["toner_level"] < 10)
+).astype(int)
+
+data.to_csv("data/raw/printer_data.csv", index=False)
